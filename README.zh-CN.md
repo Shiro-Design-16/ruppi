@@ -2,6 +2,8 @@
 
 # Ruppi
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 把 keve1227 的 [rubi](https://github.com/keve1227/rubi)（GPL-3.0）移植到 Minecraft **26.3**。
 Ruppi 为客户端渲染的任意文本绘制注音——振假名 / 读音提示。
 
@@ -82,5 +84,3 @@ GPL-3.0，继承自上游 rubi。见 [LICENSE](LICENSE)。
 - 上游 rubi：keve1227 — https://github.com/keve1227/rubi
 - Furigana 资源包：Kevin Sundqvist Norlén — https://github.com/keve1227/furigana
 - 26.3 移植与扩展资源包：SHIRO
-
-[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)

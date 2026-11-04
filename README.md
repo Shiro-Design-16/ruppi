@@ -1,5 +1,7 @@
 # Ruppi
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 **English** · [日本語](README.ja.md) · [简体中文](README.zh-CN.md)
 
 A Minecraft **26.3** port of [rubi](https://github.com/keve1227/rubi) by keve1227 (GPL-3.0).
@@ -101,5 +103,3 @@ GPL-3.0, inherited from upstream rubi. See [LICENSE](LICENSE).
 - Upstream rubi: keve1227 — https://github.com/keve1227/rubi
 - Furigana resource pack: Kevin Sundqvist Norlén — https://github.com/keve1227/furigana
 - 26.3 port and the extended resource pack: SHIRO
-
-[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)

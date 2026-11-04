@@ -2,6 +2,8 @@
 
 # Ruppi
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 [rubi](https://github.com/keve1227/rubi)（作者 keve1227、GPL-3.0）の Minecraft **26.3** 移植版です。
 Ruppi は、クライアントが描画する任意のテキストにルビ（振り仮名・読み仮名）を付けます。
 
@@ -101,5 +103,3 @@ GPL-3.0（上流の rubi から継承）。[LICENSE](LICENSE) を参照してく
 - 上流 rubi: keve1227 — https://github.com/keve1227/rubi
 - Furigana リソースパック: Kevin Sundqvist Norlén — https://github.com/keve1227/furigana
 - 26.3 移植と拡張リソースパック: SHIRO
-
-[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)

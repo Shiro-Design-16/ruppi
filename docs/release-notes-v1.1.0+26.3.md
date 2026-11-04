@@ -1,5 +1,7 @@
 # Ruppi v1.1.0+26.3
 
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
 Minecraft **26.3** port of [rubi](https://github.com/keve1227/rubi) by keve1227, plus a 26.3 build of the
 [Furigana](https://github.com/keve1227/furigana) resource pack.
 
@@ -61,5 +63,3 @@ Any client-drawn string supports the inline markup `§^base(reading)` — e.g. `
 
 26.3 客户端已没有 `GuiGraphics`，因此这是在新 `Font.prepareText` 管线上的行为级重写，而非机械升版本
 （移植说明见上面链接）。mod 沿用 rubi 的 GPL-3.0；资源包保留 Kevin Sundqvist Norlén 的署名。
-
-[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)

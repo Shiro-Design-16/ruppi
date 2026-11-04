@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "ruppi",
+  "version": "${version}",
+  "name": "Ruppi",
+  "description": "26.3 port of rubi by keve1227, licensed GPL-3.0",
+  "authors": [
+    "keve1227"
+  ],
+  "contact": {
+    "homepage": "https://rubi.kevinsundqvistnorlen.com/",
+    "sources": "https://github.com/keve1227/rubi"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/ruppi/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.shiro.ruppi.RuppiClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "ruppi.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "accessWidener": "ruppi.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

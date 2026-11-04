@@ -1,0 +1,20 @@
+{
+	"required": true,
+	"package": "com.shiro.ruppi.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"MixinAccessibilityOptionsScreen",
+		"MixinOptions",
+		"MixinFormattedText",
+		"MixinStyle",
+		"MixinStringSplitter",
+		"MixinStringDecomposer",
+		"MixinFont"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

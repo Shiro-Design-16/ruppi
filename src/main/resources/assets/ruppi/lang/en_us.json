@@ -1,0 +1,7 @@
+{
+  "options.ruppi.renderMode": "Rubies",
+  "options.ruppi.renderMode.above": "§^Above (Above) Text",
+  "options.ruppi.renderMode.below": "§^Below (Below) Text",
+  "options.ruppi.renderMode.replace": "Replace Text",
+  "options.ruppi.renderMode.hidden": "Hidden"
+}

@@ -1,0 +1,10 @@
+accessWidener v2 official
+
+# 26.3 模板工程没有 mappings 依赖（jar 本身即 mojmap 命名），因此 AW 命名空间是 official，条目却写 mojmap 名字。
+# 写 named 会在配置期硬失败：Expected official namespace for access widener entry, found: named
+
+# 让 MixinOptions 能把 ruby 选项接入 load/save/dump 三条路径
+accessible class net/minecraft/client/Options$OptionAccess
+
+# Style: ruppi$withRuby 需要复制本对象全部 11 个字段后挂 ruby（MixinStyle）
+accessible method net/minecraft/network/chat/Style <init> (Lnet/minecraft/network/chat/TextColor;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/network/chat/ClickEvent;Lnet/minecraft/network/chat/HoverEvent;Ljava/lang/String;Lnet/minecraft/network/chat/FontDescription;)V

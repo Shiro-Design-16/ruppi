@@ -1,0 +1,19 @@
+Furigana resource pack - Minecraft 26.3 build
+=============================================
+
+Contents
+  * Furigana v4 (+1) base keys - unchanged, rubi native notation.
+  * Every key the base pack has no entry for was written out for this build
+    in the rubi notation ("§^base(reading)", okurigana outside the brackets).
+    "Alex's Japanese Furigana Language" (ja_fw.json) was consulted as a
+    reference for the readings; this pack ships only our own generated
+    language file. Its ja_fe variant (readings collected at the end of the
+    sentence) cannot be mapped back onto individual words and was not used.
+
+Licensing
+  * The whole pack is distributed under GPL-3.0 - see LICENSE.
+  * (c) Kevin Sundqvist Norlén 2024 - Furigana v4 base keys.
+  * (c) SHIRO 2026 - 26.3 port: pack metadata and the added keys.
+  * Upstream project: https://github.com/keve1227/furigana
+
+Regenerate: python3 tools/merge_furigana_pack.py   (inside the ruppi workspace)

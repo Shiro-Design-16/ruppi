@@ -51,6 +51,20 @@ Resource packs stack above mod resources, and the vanilla pack wins over a mod-p
 resource pack that holds those keys with `§^` markup and enable it above the mod. The mod's own
 language file only covers its options labels.
 
+### Languages ending in `_rubi`
+
+When the selected language ends in `_rubi` (the pack below provides `ja_jp_rubi`), the base
+language (`ja_jp`) is inserted into the language stack as well — at index 1, directly above `en_us`
+and below every other fallback. On its own the stack is `[en_us, ja_jp, ja_jp_rubi]`, so keys the
+rubi pack does not carry fall back to the base language instead of English, and mods that only ship
+`ja_jp` keep their translations.
+
+That low position is deliberate: it is the lowest-priority slot that still beats English.
+A fallback chain configured through [secondlang](https://github.com/Shiro-Design-16/secondlang) takes
+precedence over this automatic insertion, and the two can be used together. The base language is
+inserted only when some resource pack (including the mod's own `assets/ruppi/lang/ja_jp.json`) provides
+`lang/<base>.json`, and never a second time if it is already in the stack.
+
 ## Companion resource pack: Japanese furigana
 
 `resourcepack/` in this repository (also attached to every release as

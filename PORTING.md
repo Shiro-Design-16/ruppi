@@ -59,6 +59,24 @@ Temporary scaffolding was used during verification (an entrypoint that cycles th
 1. **Annotated text was shifted right as a whole (width under-counted).** The `StringSplitter` width-provider wrap initially used `@ModifyVariable(argsOnly = true)` + `@At(value = "FIELD", opcode = PUTFIELD)`; it compiled and launched without errors, but at runtime the field was never replaced at all (reflection still read `Font$$Lambda`). Consequence: `Font.width` measured a `U+FFFC` slot as a single missing-glyph box (9 px) while rendering advanced by the box width, so centred text was pushed right by half the difference. Measured (1708×960, GUI scale 4): on the title screen the `設定...` button's text centre was 665.5 vs the button centre 645.5 = **20 device pixels too far right (5 GUI px)**; after switching to a direct assignment at the constructor's RETURN using `@Shadow @Final @Mutable`, the same measurement was 646.0 vs 645.5 (**+0.5 device pixels**).
 2. **A ruby span swallowed the character immediately after it.** The parse injection point for `§^base(reading)` is at the `ChatFormatting.getByCode` call, after which there are **two** increments (the `§` branch's own `i++` and the `for`'s `i++`); the old implementation's `index.set(matcher.end() - 1)` accounted for only one, so one character after every ruby span was skipped (`設定...` was actually drawn as `設定`). Changed to `matcher.end() - 2`. Sequence-level evidence (`Component.literal(...).getVisualOrderText()`): before the fix `A§^設(せつ)B` → `[41][fffc]`, after → `[41][fffc][42]`, and the width went from 15 to 21 accordingly.
 
+## Language stacking: `*_rubi` and the base language
+
+`MixinLanguageManager` wraps `ClientLanguage.loadFrom` with `@WrapOperation` rather than
+`@Redirect`, so another mod wrapping the same call still composes. When the selected language ends
+in `_rubi`, the base language is inserted at **index 1** of the language stack — directly above
+`en_us`, below every other fallback — which in a standalone install gives
+`[en_us, ja_jp, ja_jp_rubi]`. Keys the rubi pack does not carry therefore resolve against the base
+language instead of English, and mods that only ship `ja_jp` keep their translations.
+
+The low position is deliberate: ruppi only guarantees "do not fall back to English" and does not
+compete with a higher-priority chain configured by another mod. A
+[secondlang](https://github.com/Shiro-Design-16/secondlang) fallback chain (for example
+`ja_jp_rubi → zh_cn → ja_jp`) therefore wins over this automatic insertion, and the two coexist.
+Insertion happens only when some resource pack (including the mod's own
+`assets/ruppi/lang/ja_jp.json`) provides `lang/<base>.json`, and is skipped if the base language is
+already in the stack. Verified on device: the stack is `[en_us, ja_jp, ja_jp_rubi]` and ruppi's own
+`options.ruppi.renderMode` resolves to the Japanese `ルビ表示`.
+
 ## Known limitations
 
 - **Vanilla strings cannot be overridden**: during language merging the vanilla pack takes priority over mod resource packs, so a mod-provided `en_us.json` cannot change keys such as `menu.singleplayer`. Showing rubies on vanilla screens needs a resource pack carrying `§^` markup enabled above the mod (this is also how upstream rubi is used).

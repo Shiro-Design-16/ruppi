@@ -43,6 +43,17 @@ Minecraft 1.20 → 26.3 换掉了整条渲染管线（26.3 客户端已没有 `G
 
 资源包堆叠在 mod 资源之上，原版包会压过 mod 提供的 `en_us.json`——mod 无法改写 `menu.singleplayer`。要给原版文案加注音，需要发布一个资源包，在其中以 `§^` 标记这些键，并在 mod 之上启用它。mod 自带的语言文件只覆盖它自己的选项标签。
 
+### 以 `_rubi` 结尾的语言
+
+选中语言以 `_rubi` 结尾时（下方资源包提供的 `ja_jp_rubi` 即是），基底语言（`ja_jp`）也会被插进语言栈：
+位置在 **`en_us` 之上**、其它所有回退之下——单独使用时栈为 `[en_us, ja_jp, ja_jp_rubi]`。rubi 包没有提供的键
+因此回落到基底语言而不是英语，只提供 `ja_jp` 的 mod 也能保住自己的翻译。
+
+这个位置是刻意选的：它是仍然压过英语的最低优先级槽位。用户通过
+[secondlang](https://github.com/Shiro-Design-16/secondlang) 配置的回退链优先级高于这条自动插入，
+两者可以共存。只有某个资源包（包括 mod 自带的 `assets/ruppi/lang/ja_jp.json`）提供了
+`lang/<基底语言>.json` 时才会插入；栈中已有该语言时不会重复插入。
+
 ## 配套资源包：日文注音
 
 本仓库的 `resourcepack/`（每次发布也会附上 `Furigana-v4+1-26.3.zip`）是 Kevin Sundqvist Norlén 的 [Furigana](https://github.com/keve1227/furigana) 的 26.3 构建，并扩展到覆盖 26.3 `en_us` 语言文件中的每一个键，因此原版界面里的日文也会带注音。

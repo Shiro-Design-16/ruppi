@@ -93,6 +93,12 @@ Minecraft 26.3（Mojang 官方映射、Loom 1.19、Java 25）。上游源码在 
    序列级证据（`Component.literal(...).getVisualOrderText()`）：修复前 `A§^設(せつ)B` → `[41][fffc]`，
    修复后 → `[41][fffc][42]`，宽度同步从 15 变为 21。
 
+## 语言叠加：`*_rubi` 与基语言
+
+`MixinLanguageManager` 用 `@WrapOperation` 包住 `ClientLanguage.loadFrom`（不用 `@Redirect`，是为了与同样包装该调用的其它 mod 共存）。选中 `ja_jp_rubi` 这类以 `_rubi` 结尾的语言时，基语言 `ja_jp` 被插到语言栈的**索引 1**——紧贴 `en_us` 之上、其它所有回退之下，独立运行时栈为 `[en_us, ja_jp, ja_jp_rubi]`。rubi 包没有提供的键因此回落到基语言而不是英语，只提供 `ja_jp` 的其它 mod 也保住自己的翻译。
+
+这个低位置是刻意选的：ruppi 只保证「至少别再退回英语」，不与其它 mod 配置的更高优先级链争夺。[secondlang](https://github.com/Shiro-Design-16/secondlang) 的回退链（例如 `ja_jp_rubi → zh_cn → ja_jp`）因此压过这条自动规则，两者可以共存。只有某个资源包（含本 mod 自带的 `assets/ruppi/lang/ja_jp.json`）提供了 `lang/<base>.json` 时才插入；栈中已有该语言时不重复插入。实机验证：栈为 `[en_us, ja_jp, ja_jp_rubi]`，ruppi 自己的 `options.ruppi.renderMode` 取到日文「ルビ表示」。
+
 ## 已知限制
 
 - **不能覆盖原版文案**：原版资源包在语言合并时优先于 mod 资源包，mod 提供的 `en_us.json` 改不动

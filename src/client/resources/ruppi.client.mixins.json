@@ -9,7 +9,8 @@
 		"MixinStyle",
 		"MixinStringSplitter",
 		"MixinStringDecomposer",
-		"MixinFont"
+		"MixinFont",
+		"MixinLanguageManager"
 	],
 	"injectors": {
 		"defaultRequire": 1

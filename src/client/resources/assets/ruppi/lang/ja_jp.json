@@ -1,0 +1,7 @@
+{
+  "options.ruppi.renderMode": "ルビ表示",
+  "options.ruppi.renderMode.above": "§^上(うえ)に§^表示(ひょうじ)",
+  "options.ruppi.renderMode.below": "§^下(した)に§^表示(ひょうじ)",
+  "options.ruppi.renderMode.replace": "ルビで置き換え",
+  "options.ruppi.renderMode.hidden": "非表示"
+}

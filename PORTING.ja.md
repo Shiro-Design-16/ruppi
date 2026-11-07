@@ -114,6 +114,23 @@ Minecraft 26.3（Mojang 公式マッピング、Loom 1.19、Java 25）へ移植�
    シーケンスレベルの証拠（`Component.literal(...).getVisualOrderText()`）：修正前は `A§^設(せつ)B` →
    `[41][fffc]`、修正後は → `[41][fffc][42]`、幅も 15 から 21 に変わりました。
 
+## 言語の積み重ね：`*_rubi` と基底言語
+
+`MixinLanguageManager` は `ClientLanguage.loadFrom` を `@WrapOperation` で包みます。`@Redirect` では
+なく `@WrapOperation` を使うのは、同じ呼び出しを別の mod がラップしていても共存できるようにするためです。
+選択中の言語が `_rubi` で終わるとき、基底言語を言語スタックの**インデックス 1**、すなわち `en_us` の
+直上かつ他のすべてのフォールバックより下に挿入します。単独構成では
+`[en_us, ja_jp, ja_jp_rubi]` になります。ルビパックが持たないキーは英語ではなく基底言語で解決され、
+`ja_jp` しか同梱しない mod の翻訳も維持されます。
+
+この低い位置は意図的です。ruppi が保証するのは「少なくとも英語には戻さない」ところまでで、他の mod が
+設定するより高優先度の連鎖とは競合しません。[secondlang](https://github.com/Shiro-Design-16/secondlang)
+のフォールバック連鎖（例：`ja_jp_rubi → zh_cn → ja_jp`）はこの自動挿入より優先され、両者は併用できます。
+挿入するのは、何らかのリソースパック（この mod 自身の `assets/ruppi/lang/ja_jp.json` を含む）が
+`lang/<基底言語>.json` を提供している場合だけで、基底言語がすでにスタックにあるときは行いません。
+実機確認：スタックは `[en_us, ja_jp, ja_jp_rubi]` となり、ruppi 自身の `options.ruppi.renderMode` は
+日本語の `ルビ表示` を返します。
+
 ## 既知の制限
 
 - **バニラの文言は上書きできない**：バニラのリソースパックは言語のマージ時に mod のリソースパックより
